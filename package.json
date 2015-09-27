@@ -1,0 +1,29 @@
+{
+  "name": "canvas-rounded-rectangle",
+  "version": "0.0.1",
+  "description": "Draw rounded rectangle on canvas using css-alike styles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/RB-Lab/canvas-rounded-rectangle.git"
+  },
+  "keywords": [
+    "canvas",
+    "rounded",
+    "rectangle",
+    "styles",
+    "border-radius"
+  ],
+  "author": "RB-Lab",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RB-Lab/canvas-rounded-rectangle/issues"
+  },
+  "homepage": "https://github.com/RB-Lab/canvas-rounded-rectangle#readme",
+  "dependencies": {
+    "canvas-styles": "0.0.1"
+  }
+}
