@@ -1,7 +1,7 @@
 # Canvas Rounded Rectangle
-### Draw rounded rectangle on canvas
+## Geometry type for [canvas-tree](https://www.npmjs.com/package/canvas-tree)
 
-Use it with Browserify or Webpack.
+### Creates Path2D object represented rounded rectangle
 
 #### Installation
 
@@ -13,34 +13,46 @@ Use it with Browserify or Webpack.
 
 ```javascript
 
-	var roundRect = require('canvas-rounded-rectangle');
-	
-	var myRectStyle = {
-		fill: '#f4f4f4',
-		stroke: '#122292',
-		strokeWidth: 1,
-		strokeStyle: 'dashed',
+	import roundedRectangle from 'canvas-rounded-rectangle';
+	import createCanvas from 'canvas-tree';
+
+	const style = {
+		top: 60,
+		left: 80,
+		width: 100,
+		height: 50,
+		stroke: '#3333ff',
+		fill: '#fffaaa',
 		borderRadius: 5,
-		height: 60,
-		width: 150
+		strokeWidth: 2,
+		hover: {
+			stroke: '#ff3333'
+		}
 	}
-	
-	var ctx = document.getElementById('canvas').getContext('2D');
-	
-	roundRect.draw(ctx, 20, 20, myRectStyle); // and we've got a rounded rectangle on canvas
-	
-	// OR, if browser supports Path2D
-	
-	if('Path2D' in window){
-		var applyStyles = require('canvas-styles').applyStyles;
 
-		var rect = roundRect.make(20, 100, myRectStyle); // rect now is Path2D object
-		applyStyles(ctx, myRectStyle);
-		ctx.stroke(path);
-		ctx.fill(path); // and we've also got a rounded rectangle on canvas
+	const $canvas = document.getElementById('canvas');
 
-		// but now we can also do something like that:
-		console.log(ctx.isPointInPath(rect, 100, 120)); // true
-	}
-	
+	// as geometry type for
+	const canvas = createCanvas($canvas);
+
+	canvas.update({
+		children: [
+			{
+				geometry: roundedRectangle,
+				children: [],
+				style
+			}
+		]
+	});
+
+	// standalone
+	const path = roundedRectangle(style);
+	const ctx = $canvas.getContext('2d');
+	ctx.lineWidth = style.strokeWidth;
+	ctx.strokeStyle = style.stroke;
+	ctx.fill =  style.fill;
+	ctx.fill(path);
+	ctx.stroke(path);
+	// if(ctx.isPointInPath(path, x, y)) ... etc...
+
 ```
